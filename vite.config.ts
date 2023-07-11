@@ -82,7 +82,7 @@ export default ({ mode }: ConfigEnv) => {
     plugins: [
       vue(),
       eslintPlugin(),
-      mars3dPlugin({ cesiumRunPath: "cesium", useStatic: true, useCDN: true }),
+      mars3dPlugin({ cesiumRunPath: "cesium", useStatic: true, useCDN: true }), //useCDN: { mars3d: "3.4.26", cesium: "1.95.1" }
       createStyleImportPlugin({
         resolves: [VantResolve()],
         libs: [
