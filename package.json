@@ -1,6 +1,6 @@
 {
   "name": "mars3d-vue-app",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "description": "在Vue3技术栈下的Mars3D平台 基础项目",
   "scripts": {
     "dev": "vite --host",
@@ -24,8 +24,8 @@
     "core-js": "^3.20.3",
     "dayjs": "^1.11.0",
     "echarts": "^5.3.1",
-    "mars3d": "~3.5.12",
-    "mars3d-cesium": "~1.107.0",
+    "mars3d": "~3.6.0",
+    "mars3d-cesium": "~1.108.0",
     "nprogress": "^0.2.0",
     "uuid": "^8.3.2",
     "vant": "4.0.0-alpha.0",
