@@ -5,7 +5,7 @@
  */
 import { Store, createStore, useStore } from "vuex"
 import { InjectionKey } from "vue"
-// import { getUserInformation } from "@mars/common/api"
+import { getUserInformation } from "@mars/common/api"
 
 export interface Point {
   name: string
@@ -68,11 +68,11 @@ export const globalStore = createStore<GlobalState>({
   },
   actions: {
     async getUserInfo({ commit }) {
-      // const { code, data } = await getUserInformation()
+      const { code, data } = await getUserInformation()
 
-      // if (code === 200) {
-      //   commit("updateUserInformation", data)
-      // }
+      if (code === 200) {
+        commit("updateUserInformation", data)
+      }
     }
   }
 })
