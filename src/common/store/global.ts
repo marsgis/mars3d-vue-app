@@ -5,7 +5,6 @@
  */
 import { Store, createStore, useStore } from "vuex"
 import { InjectionKey } from "vue"
-import { getUserInformation } from "@mars/common/api"
 
 export interface Point {
   name: string
@@ -68,11 +67,8 @@ export const globalStore = createStore<GlobalState>({
   },
   actions: {
     async getUserInfo({ commit }) {
-      const { code, data } = await getUserInformation()
-
-      if (code === 200) {
-        commit("updateUserInformation", data)
-      }
+      const data = { id: "1", user_name: "mars3d", phone: "0551-65883001", email: "wh@marsgis.cn", avatar: "" }
+      commit("updateUserInformation", data)
     }
   }
 })
