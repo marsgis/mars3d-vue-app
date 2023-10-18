@@ -1,4 +1,4 @@
-import { Toast } from "vant"
+import { Toast } from "@vant/compat"
 import type { ToastOptions } from "vant"
 import { App } from "vue"
 import "./message.less"

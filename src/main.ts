@@ -7,6 +7,7 @@ import Application from "./App.vue"
 import { globalStore, key as globalKey } from "@mars/common/store/global"
 import MarsUIInstall from "@mars/components/mars-ui"
 import filter from "@mars/utils/filter-util"
+import Vant from "vant"
 
 import { router } from "@mars/routes"
 // import VConsole from "vconsole"
@@ -18,6 +19,7 @@ import { router } from "@mars/routes"
 const app = createApp(Application)
 
 app.use(router)
+app.use(Vant)
 
 app.use(globalStore, globalKey)
 app.use(filter)

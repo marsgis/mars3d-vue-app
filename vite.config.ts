@@ -7,6 +7,8 @@ import { mars3dPlugin } from "vite-plugin-mars3d"
 import { createStyleImportPlugin, VantResolve } from "vite-plugin-style-import"
 import pxtoviewport from "postcss-px-to-viewport-8-plugin"
 import autoprefixer from "autoprefixer"
+import Components from "unplugin-vue-components/vite"
+import { VantResolver, AntDesignVueResolver } from "unplugin-vue-components/resolvers"
 
 export default ({ mode }: ConfigEnv) => {
   const root = process.cwd()
@@ -33,7 +35,7 @@ export default ({ mode }: ConfigEnv) => {
       alias: {
         "@mars": path.join(__dirname, "src")
       },
-      extensions: [".js", ".ts", ".jsx", ".tsx", ".json"]
+      extensions: [".js", ".ts", ".jsx", ".tsx", ".json", ".mjs"]
     },
     json: {
       // 支持从 .json 文件中进行按名导入
@@ -88,25 +90,16 @@ export default ({ mode }: ConfigEnv) => {
         // useCDN: true, //编译包，是否使用CDN引入资源
         // useCDN: { mars3d: "3.4.26", cesium: "1.95.1" }, // 配置object时定义各库的cdn的版本号（使用unpkg.com）
         useCDN: [
-         "http://mars3d.cn/lib/Cesium/Widgets/widgets.css",
-         "http://mars3d.cn/lib/Cesium/Cesium.js",
-         "window.CESIUM_BASE_URL = 'http://mars3d.cn/lib/Cesium/'",
-         "http://mars3d.cn/lib/turf/turf.min.js",
-         "http://mars3d.cn/lib/mars3d/mars3d.css",
-         "http://mars3d.cn/lib/mars3d/mars3d.js"
+          "http://mars3d.cn/lib/Cesium/Widgets/widgets.css",
+          "http://mars3d.cn/lib/Cesium/Cesium.js",
+          "window.CESIUM_BASE_URL = 'http://mars3d.cn/lib/Cesium/'",
+          "http://mars3d.cn/lib/turf/turf.min.js",
+          "http://mars3d.cn/lib/mars3d/mars3d.css",
+          "http://mars3d.cn/lib/mars3d/mars3d.js"
         ] // 配置array时定义各库的完整url地址
       }),
-      createStyleImportPlugin({
-        resolves: [VantResolve()],
-        libs: [
-          {
-            libraryName: "ant-design-vue",
-            esModule: true,
-            resolveStyle: (name) => {
-              return `vant/es/${name}/style`
-            }
-          }
-        ]
+      Components({
+        resolvers: [VantResolver()]
       })
     ]
   })
