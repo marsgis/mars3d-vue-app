@@ -52,7 +52,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   position: () => ({
-    bottom: "30",
+    top: "70",
     right: "10"
   })
 })
@@ -149,7 +149,7 @@ function findChild(parent: any, list: any[]) {
         hasZIndex: item.hasZIndex,
         hasOpacity: item.hasOpacity,
         opacity: 100 * (item.opacity || 0),
-        parent: parent,
+        parent,
         show: item.isAdded && item.show
       }
 

@@ -789,7 +789,7 @@
         "pid": 2040,
         "type": "3dtiles",
         "name": "合肥市区",
-        "url": "{dataServer}/3dtiles/jzw-hefei2/tileset.json",
+        "url": "{dataServer}/3dtiles/jzw-hefei/tileset.json",
         "marsJzwStyle": true,
         "style": {
           "color": {
