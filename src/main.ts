@@ -8,6 +8,7 @@ import { globalStore, key as globalKey } from "@mars/common/store/global"
 import MarsUIInstall from "@mars/components/mars-ui"
 import filter from "@mars/utils/filter-util"
 import Vant from "vant"
+import "vant/lib/index.css"
 
 import { router } from "@mars/routes"
 // import VConsole from "vconsole"
