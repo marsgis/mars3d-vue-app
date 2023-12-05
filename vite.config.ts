@@ -21,14 +21,17 @@ export default ({ mode }: ConfigEnv) => {
   return defineConfig({
     base: ENV.VITE_BASE_URL,
     server: {
-      https: false,
       port: 3003
+      // proxy: {
+      //   // "/v1": "http://localhost:7001"
+      //   "/v1": "http://server.mars3d.cn"
+      // }
     },
     define: {
       "process.env": {
-        mode: mode,
-        BASE_URL: ENV.VITE_BASE_URL
-        // API_BASE: ENV.VITE_API_URL
+        mode,
+        BASE_URL: ENV.VITE_BASE_URL,
+        API_BASE: ENV.VITE_API_URL
       }
     },
     resolve: {
@@ -68,8 +71,16 @@ export default ({ mode }: ConfigEnv) => {
       commonjsOptions: {
         include: /node_modules|packages/
       },
+      // 静态资源目录
+      assetsDir: "assets",
       // 自定义底层的 Rollup 打包配置
-      rollupOptions: {},
+      rollupOptions: {
+        output: {
+          chunkFileNames: "assets/js/[name]-[hash].js",
+          entryFileNames: "assets/js/[name]-[hash].js",
+          assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
+        }
+      },
       // 当设置为 true, 构建后将会生成 manifest.json 文件
       manifest: false,
       // 设置为 false 可以禁用最小化混淆,或是用来指定是应用哪种混淆器 boolean | 'terser' | 'esbuild'
