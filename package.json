@@ -28,7 +28,7 @@
     "echarts": "^5.4.3",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
-    "mars3d": "v3.6.0",
+    "mars3d": "~3.6.0",
     "mars3d-cesium": "~1.112.0",
     "nprogress": "^0.2.0",
     "qs": "^6.11.2",
