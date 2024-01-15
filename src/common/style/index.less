@@ -5,22 +5,65 @@
  * @author 火星渣渣灰 2022-01-01
  */
 
+* {
+  -webkit-touch-callout: none;
+  /*系统默认菜单被禁用*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  -moz-user-select: none;
+  /*火狐*/
+  -ms-user-select: none;
+  /*IE10*/
+  user-select: none;
+}
+
 /* 清除内外边距 */
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
- dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
- pre, /* text formatting elements 文本格式元素 */
- fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
- th, td {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+/* structural elements 结构元素 */
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+/* list elements 列表元素 */
+pre,
+/* text formatting elements 文本格式元素 */
+fieldset,
+lengend,
+button,
+input,
+textarea,
+/* form elements 表单元素 */
+th,
+td {
   /* table elements 表格元素 */
   margin: 0;
   padding: 0;
-  -moz-user-select: auto; /*火狐*/
-  -webkit-user-select: auto; /*webkit浏览器*/
-  -ms-user-select: auto; /*IE10*/
-  -khtml-user-select: auto; /*早期浏览器*/
+  -moz-user-select: auto;
+  /*火狐*/
+  -webkit-user-select: auto;
+  /*webkit浏览器*/
+  -ms-user-select: auto;
+  /*IE10*/
+  -khtml-user-select: auto;
+  /*早期浏览器*/
   user-select: auto;
   list-style: auto;
 }
+
+
 
 /*滚动条*/
 body,
