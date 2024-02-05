@@ -2,17 +2,17 @@ import path from "path"
 import type { ConfigEnv } from "vite"
 import { defineConfig, loadEnv } from "vite"
 import vue from "@vitejs/plugin-vue"
+// import legacy from "@vitejs/plugin-legacy"
 import eslintPlugin from "vite-plugin-eslint"
 import { mars3dPlugin } from "vite-plugin-mars3d"
-import { createStyleImportPlugin, VantResolve } from "vite-plugin-style-import"
 import pxtoviewport from "postcss-px-to-viewport-8-plugin"
 import autoprefixer from "autoprefixer"
 import Components from "unplugin-vue-components/vite"
-import { VantResolver, AntDesignVueResolver } from "unplugin-vue-components/resolvers"
+import { VantResolver } from "unplugin-vue-components/resolvers"
 
 export default ({ mode }: ConfigEnv) => {
   const root = process.cwd()
-
+  // 获取 .env 文件里定义的环境变量
   const ENV = loadEnv(mode, root)
 
   console.log(`当前环境信息：`, mode)
@@ -94,6 +94,30 @@ export default ({ mode }: ConfigEnv) => {
     },
     plugins: [
       vue(),
+      // 兼容老版本浏览器配置
+      // legacy({
+      //   targets: ["> 5%", "last 2 major versions", "chrome >80", "not dead"], // 需要兼容的目标列表，可以设置多个,参考.browserslistrc等
+      //   additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
+      //   renderLegacyChunks: true,
+      //   polyfills: [
+      //     "es.symbol",
+      //     "es.array.filter",
+      //     "es.promise",
+      //     "es.promise.finally",
+      //     "es/map",
+      //     "es/set",
+      //     "es.array.for-each",
+      //     "es.object.define-properties",
+      //     "es.object.define-property",
+      //     "es.object.get-own-property-descriptor",
+      //     "es.object.get-own-property-descriptors",
+      //     "es.object.keys",
+      //     "es.object.to-string",
+      //     "web.dom-collections.for-each",
+      //     "esnext.global-this",
+      //     "esnext.string.match-all"
+      //   ]
+      // }),
       eslintPlugin(),
       mars3dPlugin({
         cesiumRunPath: "cesium",
