@@ -120,7 +120,6 @@ export default ({ mode }: ConfigEnv) => {
       // }),
       eslintPlugin(),
       mars3dPlugin({
-        cesiumRunPath: "cesium",
         useStatic: true,
         // useCDN: true, //编译包，是否使用CDN引入资源
         // useCDN: { mars3d: "3.4.26", cesium: "1.95.1" }, // 配置object时定义各库的cdn的版本号（使用unpkg.com）
