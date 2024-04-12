@@ -31,9 +31,11 @@
         "minimumCollisionTerrainHeight": 15000
       }
     },
-    "templateValues": {
-      "dataServer": "https://data.mars3d.cn",
-      "gltfServerUrl": "https://data.mars3d.cn/gltf"
+    "method": {
+      "templateValues": {
+        "dataServer": "//data.mars3d.cn",
+        "gltfServerUrl": "//data.mars3d.cn/gltf"
+      }
     },
     "terrain": {
       "url": "https://data.mars3d.cn/terrain",
