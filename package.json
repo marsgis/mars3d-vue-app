@@ -30,7 +30,7 @@
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "mars3d": "~3.7.0",
-    "mars3d-cesium": "~1.118.0",
+    "mars3d-cesium": "~1.119.0",
     "nprogress": "^0.2.0",
     "qs": "^6.11.2",
     "uuid": "^9.0.1",
