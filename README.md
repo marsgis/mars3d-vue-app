@@ -30,8 +30,10 @@
 
 ## 视频讲解
 
-建议先看一遍视频讲解，再实际操作。您可以[新页面查看高清视频](https://www.bilibili.com/video/BV1iY4y1t7jk/)
 
+建议先看一遍视频讲解，再实际操作。您可以
+1. [基础讲解-新页面查看高清视频](https://www.bilibili.com/video/BV1iY4y1t7jk/) 
+2. [高级讲解-新页面查看高清视频](https://www.bilibili.com/video/BV1CD4y137jK/) 
 
 
 
@@ -109,12 +111,13 @@ npm run build
  
 #### 编译发布版文件
 1. 执行命令`npm run build:app`
-2. 将dist目录文件剪切覆盖至HBuilderX工程，假设是pack目录
+2. 将dist目录内所有文件剪切覆盖至HBuilderX工程，假设是pack目录(移动后有pack\index.html页面)
 
 #### HBuilderX打包apk
 1. 通过HBuilderX打开pack目录
 2. 根据需要调整manifest.json配置(如id、app名称等)
-3. 通过HBuilderX打开菜单“打包”->"云打包"打包pak文件
+3. 预览下index.html页面，各项功能正常操作
+4. 通过HBuilderX打开菜单“打包”->"云打包"打包pak文件
 
 
 
