@@ -39,7 +39,7 @@ onMounted(() => {
   mars3d.Util.fetchJson({ url: props.url }).then((data: any) => {
     initMars3d({
       // 合并配置项
-      ...data.map3d,
+      ...data,
       ...props.options
     })
   })
