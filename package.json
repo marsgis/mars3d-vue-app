@@ -20,7 +20,7 @@
   "dependencies": {
     "@icon-park/svg": "^1.4.2",
     "@icon-park/vue-next": "^1.4.2",
-    "@turf/turf": "^7.1.0",
+    "@turf/turf": "^7.2.0",
     "@vant/compat": "^1.0.0",
     "ali-oss": "^6.20.0",
     "axios": "^1.6.7",
