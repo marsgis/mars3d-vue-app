@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<Props>(), {
   warpper: "app",
   visible: false,
   animation: true,
-  zIndex: 900
+  zIndex: 999
 })
 
 const mergeProps = computed(() => {

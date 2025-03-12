@@ -11,7 +11,7 @@
 /node_modules
 public/lib/CesiumUnminified/
 packages/mars3d/dist/plugins/
-packages/mars3d/node_modules/
+packages/mars3d/plugins/
 mars3d-*src.*
 
 

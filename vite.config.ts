@@ -86,7 +86,12 @@ export default ({ mode }: ConfigEnv) => {
       // 设置为 false 可以禁用最小化混淆,或是用来指定是应用哪种混淆器 boolean | 'terser' | 'esbuild'
       minify: "terser",
       // 传递给 Terser 的更多 minify 选项
-      terserOptions: {},
+      terserOptions: {
+        compress: {
+          drop_console: true, // 删除 console.log
+          drop_debugger: true // 删除 debugger
+        }
+      },
       // 设置为false 来禁用将构建好的文件写入磁盘
       write: true,
       // 默认情况下 若 outDir 在 root 目录下， 则 Vite 会在构建时清空该目录。
@@ -94,47 +99,9 @@ export default ({ mode }: ConfigEnv) => {
     },
     plugins: [
       vue(),
-      // 兼容老版本浏览器配置
-      // legacy({
-      //   targets: ["> 5%", "last 2 major versions", "chrome >80", "not dead"], // 需要兼容的目标列表，可以设置多个,参考.browserslistrc等
-      //   additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
-      //   renderLegacyChunks: true,
-      //   polyfills: [
-      //     "es.symbol",
-      //     "es.array.filter",
-      //     "es.promise",
-      //     "es.promise.finally",
-      //     "es/map",
-      //     "es/set",
-      //     "es.array.for-each",
-      //     "es.object.define-properties",
-      //     "es.object.define-property",
-      //     "es.object.get-own-property-descriptor",
-      //     "es.object.get-own-property-descriptors",
-      //     "es.object.keys",
-      //     "es.object.to-string",
-      //     "web.dom-collections.for-each",
-      //     "esnext.global-this",
-      //     "esnext.string.match-all"
-      //   ]
-      // }),
       eslintPlugin(),
-      mars3dPlugin({
-        useStatic: true,
-        // useCDN: true, //编译包，是否使用CDN引入资源
-        // useCDN: { mars3d: "3.4.26", cesium: "1.95.1" }, // 配置object时定义各库的cdn的版本号（使用unpkg.com）
-        useCDN: [
-          "http://mars3d.cn/lib/Cesium/Widgets/widgets.css",
-          "http://mars3d.cn/lib/Cesium/Cesium.js",
-          "window.CESIUM_BASE_URL = 'http://mars3d.cn/lib/Cesium/'",
-          "http://mars3d.cn/lib/turf/turf.min.js",
-          "http://mars3d.cn/lib/mars3d/mars3d.css",
-          "http://mars3d.cn/lib/mars3d/mars3d.js"
-        ] // 配置array时定义各库的完整url地址
-      }),
-      Components({
-        resolvers: [VantResolver()]
-      })
+      mars3dPlugin(),
+      Components({ resolvers: [VantResolver()] })
     ]
   })
 }

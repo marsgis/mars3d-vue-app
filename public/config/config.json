@@ -32,8 +32,7 @@
   },
   "method": {
     "templateValues": {
-      "dataServer": "//data.mars3d.cn",
-      "gltfServerUrl": "//data.mars3d.cn/gltf"
+      "mars3d_data": "//data.mars3d.cn"
     }
   },
   "terrain": {
@@ -46,7 +45,7 @@
       "id": 2021,
       "pid": 10,
       "name": "天地图影像",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/tdt_img.png",
+      "icon": "./img/thumbnail/basemap/tdt_img.png",
       "type": "group",
       "layers": [
         { "name": "底图", "type": "tdt", "layer": "img_d" },
@@ -57,7 +56,7 @@
     {
       "pid": 10,
       "name": "天地图电子",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/tdt_vec.png",
+      "icon": "./img/thumbnail/basemap/tdt_vec.png",
       "type": "group",
       "layers": [
         { "name": "底图", "type": "tdt", "layer": "vec_d" },
@@ -68,7 +67,7 @@
       "pid": 10,
       "name": "高德影像",
       "type": "group",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/gaode_img.png",
+      "icon": "./img/thumbnail/basemap/gaode_img.png",
       "layers": [
         { "name": "底图", "type": "gaode", "layer": "img_d" },
         { "name": "注记", "type": "gaode", "layer": "img_z" }
@@ -78,14 +77,14 @@
       "pid": 10,
       "name": "高德电子",
       "type": "gaode",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/gaode_vec.png",
+      "icon": "./img/thumbnail/basemap/gaode_vec.png",
       "layer": "vec"
     },
     {
       "pid": 10,
       "name": "百度影像",
       "type": "group",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/bd-img.png",
+      "icon": "./img/thumbnail/basemap/bd-img.png",
       "layers": [
         { "name": "底图", "type": "baidu", "layer": "img_d" },
         { "name": "注记", "type": "baidu", "layer": "img_z" }
@@ -94,14 +93,14 @@
     {
       "pid": 10,
       "name": "百度电子",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/bd-vec.png",
+      "icon": "./img/thumbnail/basemap/bd-vec.png",
       "type": "baidu",
       "layer": "vec"
     },
     {
       "pid": 10,
       "name": "腾讯影像",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/tencent_img.png",
+      "icon": "./img/thumbnail/basemap/tencent_img.png",
       "type": "group",
       "layers": [
         { "name": "底图", "type": "tencent", "layer": "img_d" },
@@ -111,14 +110,14 @@
     {
       "pid": 10,
       "name": "腾讯电子",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/tencent_vec.png",
+      "icon": "./img/thumbnail/basemap/tencent_vec.png",
       "type": "tencent",
       "layer": "vec"
     },
     {
       "pid": 10,
       "name": "ArcGIS影像",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/esriWorldImagery.png",
+      "icon": "./img/thumbnail/basemap/esriWorldImagery.png",
       "type": "xyz",
       "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
       "enablePickFeatures": false
@@ -126,7 +125,7 @@
     {
       "pid": 10,
       "name": "微软影像",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/bingAerial.png",
+      "icon": "./img/thumbnail/basemap/bingAerial.png",
       "type": "bing",
       "layer": "Aerial"
     },
@@ -134,7 +133,7 @@
       "id": 2017,
       "pid": 10,
       "name": "蓝色底图",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/bd-c-midnight.png",
+      "icon": "./img/thumbnail/basemap/bd-c-midnight.png",
       "type": "gaode",
       "layer": "vec",
       "chinaCRS": "GCJ02",
@@ -149,7 +148,7 @@
     {
       "pid": 10,
       "name": "黑色底图",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/bd-c-dark.png",
+      "icon": "./img/thumbnail/basemap/bd-c-dark.png",
       "type": "gaode",
       "layer": "vec",
       "chinaCRS": "GCJ02",
@@ -164,7 +163,7 @@
     {
       "pid": 10,
       "name": "单张图片 (本地离线)",
-      "icon": "//data.mars3d.cn/img/thumbnail/basemap/offline.png",
+      "icon": "./img/thumbnail/basemap/offline.png",
       "type": "image",
       "url": "http://data.mars3d.cn/img/map/world/world.jpg"
     }
@@ -267,7 +266,7 @@
       "pid": 4030,
       "name": "合肥规划图",
       "type": "arcgis_cache",
-      "url": "{dataServer}/arcgis_cache/hfgh/_alllayers/{z}/{y}/{x}.png",
+      "url": "{mars3d_data}/arcgis_cache/hfgh/_alllayers/{z}/{y}/{x}.png",
       "minimumLevel": 1,
       "maximumLevel": 17,
       "minimumTerrainLevel": 1,
@@ -343,7 +342,7 @@
       "pid": 3030,
       "type": "geojson",
       "name": "平台标绘",
-      "url": "{dataServer}/file/geojson/mars3d-draw.json",
+      "url": "{mars3d_data}/file/geojson/mars3d-draw.json",
       "popup": "{type}{name}",
       "show": false,
       "flyTo": true
@@ -352,7 +351,7 @@
       "pid": 3030,
       "type": "geojson",
       "name": "用地规划",
-      "url": "{dataServer}/file/geojson/guihua.json",
+      "url": "{mars3d_data}/file/geojson/guihua.json",
       "symbol": {
         "styleOptions": { "opacity": 0.6, "color": "#0000FF", "width": 3, "clampToGround": true },
         "styleField": "类型",
@@ -391,7 +390,7 @@
       "pid": 3030,
       "type": "geojson",
       "name": "建筑物面",
-      "url": "{dataServer}/file/geojson/buildings-demo.json",
+      "url": "{mars3d_data}/file/geojson/buildings-demo.json",
       "symbol": { "styleOptions": { "color": "#0d3685", "outlineColor": "#0d3685", "opacity": 0.8 } },
       "buildings": { "cloumn": "floors", "height": "flo_height" },
       "popup": "all",
@@ -401,7 +400,7 @@
       "pid": 3030,
       "type": "geojson",
       "name": "安徽各市",
-      "url": "{dataServer}/file/geojson/areas/340000_full.json",
+      "url": "{mars3d_data}/file/geojson/areas/340000_full.json",
       "symbol": {
         "type": "polygon",
         "styleOptions": {
@@ -438,7 +437,7 @@
       "pid": 3030,
       "type": "geojson",
       "name": "中国省界",
-      "url": "{dataServer}/file/geojson/areas/100000_full.json",
+      "url": "{mars3d_data}/file/geojson/areas/100000_full.json",
       "symbol": {
         "type": "polylineP",
         "styleOptions": {
@@ -470,10 +469,10 @@
       "pid": 3030,
       "type": "geojson",
       "name": "西藏垭口",
-      "url": "{dataServer}/file/geojson/xizangyakou.json",
+      "url": "{mars3d_data}/file/geojson/xizangyakou.json",
       "symbol": {
         "styleOptions": {
-          "image": "//data.mars3d.cn/img/marker/mark-red.png",
+          "image": "./img/marker/mark-red.png",
           "scaleByDistance": true,
           "scaleByDistance_far": 5000000,
           "scaleByDistance_farValue": 0.5,
@@ -513,10 +512,10 @@
       "pid": 3030,
       "type": "geojson",
       "name": "体育设施点",
-      "url": "{dataServer}/file/geojson/hfty-point.json",
+      "url": "{mars3d_data}/file/geojson/hfty-point.json",
       "symbol": {
         "styleOptions": {
-          "image": "//data.mars3d.cn/img/marker/mark-red.png",
+          "image": "./img/marker/mark-red.png",
           "scale": 1,
           "scaleByDistance": true,
           "scaleByDistance_far": 20000,
@@ -601,7 +600,7 @@
       "symbol": {
         "type": "billboardP",
         "styleOptions": {
-          "image": "//data.mars3d.cn/img/marker/mark-red.png",
+          "image": "./img/marker/mark-red.png",
           "scaleByDistance": true,
           "scaleByDistance_far": 20000,
           "scaleByDistance_farValue": 0.6,
@@ -636,7 +635,7 @@
       "symbol": {
         "type": "billboardP",
         "styleOptions": {
-          "image": "//data.mars3d.cn/img/marker/mark-blue.png",
+          "image": "./img/marker/mark-blue.png",
           "scaleByDistance": true,
           "scaleByDistance_far": 20000,
           "scaleByDistance_farValue": 0.6,
@@ -657,9 +656,9 @@
         },
         "styleField": "address",
         "styleFieldOptions": {
-          "AB03": { "image": "//data.mars3d.cn/img/marker/mark-red.png" },
-          "A980": { "image": "//data.mars3d.cn/img/marker/mark-blue.png" },
-          "A900": { "image": "//data.mars3d.cn/img/marker/mark-green.png" }
+          "AB03": { "image": "./img/marker/mark-red.png" },
+          "A980": { "image": "./img/marker/mark-blue.png" },
+          "A900": { "image": "./img/marker/mark-green.png" }
         }
       },
       "popup": "名称：{NAME}<br />地址：{address}",
@@ -703,7 +702,7 @@
       "pid": 3060,
       "type": "czml",
       "name": "汽车",
-      "url": "{dataServer}/file/czml/car.czml",
+      "url": "{mars3d_data}/file/czml/car.czml",
       "center": { "lat": 40.894745, "lng": 121.920252, "alt": 904, "heading": 64, "pitch": -67 },
       "onWidget": "control-clock",
       "radio": true,
@@ -714,26 +713,26 @@
       "pid": 3060,
       "type": "czml",
       "name": "卫星轨道",
-      "url": "{dataServer}/file/czml/satellite-simple.czml",
+      "url": "{mars3d_data}/file/czml/satellite-simple.czml",
       "popup": "all",
       "onWidget": "control-clock",
       "radio": true,
       "flyTo": true
     },
     { "id": 3050, "name": "KML数据", "type": "group" },
-    { "pid": 3050, "type": "kml", "name": "海上安全警告", "url": "{dataServer}/file/kml/NAVWARN.kmz", "popup": "all" },
+    { "pid": 3050, "type": "kml", "name": "海上安全警告", "url": "{mars3d_data}/file/kml/NAVWARN.kmz", "popup": "all" },
     {
       "pid": 3050,
       "type": "kml",
       "name": "国境线",
-      "url": "{dataServer}/file/kml/countryboundary.kml",
+      "url": "{mars3d_data}/file/kml/countryboundary.kml",
       "symbol": { "styleOptions": { "color": "#FED976", "width": 2 } }
     },
     {
       "pid": 3050,
       "type": "kml",
       "name": "省界线",
-      "url": "{dataServer}/file/kml/province.kml",
+      "url": "{mars3d_data}/file/kml/province.kml",
       "symbol": { "styleOptions": { "color": "#00FF00", "width": 2 } }
     },
 
@@ -778,9 +777,9 @@
     {
       "id": 204011,
       "pid": 2040,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "合肥市区",
-      "url": "{dataServer}/3dtiles/jzw-hefei/tileset.json",
+      "url": "{mars3d_data}/3dtiles/jzw-hefei/tileset.json",
       "marsJzwStyle": true,
       "style": {
         "color": {
@@ -798,9 +797,9 @@
     {
       "id": 204012,
       "pid": 2040,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "上海市区",
-      "url": "{dataServer}/3dtiles/jzw-shanghai/tileset.json",
+      "url": "{mars3d_data}/3dtiles/jzw-shanghai/tileset.json",
       "maximumScreenSpaceError": 4,
       "maximumMemoryUsage": 1024,
       "style": {
@@ -828,7 +827,7 @@
     {
       "id": 202016,
       "pid": 2050,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "高压线塔杆",
       "url": "https://data.mars3d.cn/3dtiles/pnts-ganta/tileset.json",
       "maximumScreenSpaceError": 1,
@@ -852,9 +851,9 @@
     {
       "id": 20601121,
       "pid": 2060,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "大学教学楼",
-      "url": "{dataServer}/3dtiles/bim-daxue/tileset.json",
+      "url": "{mars3d_data}/3dtiles/bim-daxue/tileset.json",
       "position": { "lng": 117.251229, "lat": 31.844015, "alt": 31.2 },
       "highlight": { "type": "click", "color": "#FFFF00" },
       "popup": "all",
@@ -863,9 +862,9 @@
     },
     {
       "pid": 2060,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "轻轨地铁站",
-      "url": "{dataServer}/3dtiles/bim-ditiezhan/tileset.json",
+      "url": "{mars3d_data}/3dtiles/bim-ditiezhan/tileset.json",
       "position": { "lng": 117.203994, "lat": 31.857999, "alt": 28.9 },
       "rotation": { "z": 168.1 },
       "highlight": { "type": "click", "color": "#00FF00" },
@@ -876,9 +875,9 @@
     {
       "id": 206012,
       "pid": 2060,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "桥梁",
-      "url": "{dataServer}/3dtiles/bim-qiaoliang/tileset.json",
+      "url": "{mars3d_data}/3dtiles/bim-qiaoliang/tileset.json",
       "position": { "lng": 117.096906, "lat": 31.851564, "alt": 45 },
       "rotation": { "z": 17.5 },
       "maximumScreenSpaceError": 16,
@@ -900,9 +899,9 @@
     {
       "id": 202013,
       "pid": 2020,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "地下管网",
-      "url": "{dataServer}/3dtiles/max-piping/tileset.json",
+      "url": "{mars3d_data}/3dtiles/max-piping/tileset.json",
       "position": { "lng": 117.215457, "lat": 31.843363, "alt": -3.6 },
       "rotation": { "z": 336.7 },
       "maximumScreenSpaceError": 2,
@@ -915,9 +914,9 @@
     {
       "id": 202012,
       "pid": 2020,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "石化工厂",
-      "url": "{dataServer}/3dtiles/max-shihua/tileset.json",
+      "url": "{mars3d_data}/3dtiles/max-shihua/tileset.json",
       "position": { "lng": 117.077158, "lat": 31.659116, "alt": 24.6 },
       "maximumScreenSpaceError": 1,
       "maximumMemoryUsage": 1024,
@@ -952,9 +951,9 @@
     {
       "id": 202011,
       "pid": 202030,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "整体",
-      "url": "{dataServer}/3dtiles/max-fsdzm/tileset.json",
+      "url": "{mars3d_data}/3dtiles/max-fsdzm/tileset.json",
       "position": { "alt": 15.2 },
       "maximumScreenSpaceError": 1,
       "maximumMemoryUsage": 1024,
@@ -964,9 +963,9 @@
     {
       "id": 203014,
       "pid": 2030,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "县城社区",
-      "url": "{dataServer}/3dtiles/qx-shequ/tileset.json",
+      "url": "{mars3d_data}/3dtiles/qx-shequ/tileset.json",
       "position": { "alt": 11.5 },
       "maximumScreenSpaceError": 2,
       "maximumMemoryUsage": 2048,
@@ -980,8 +979,8 @@
       "id": 203015,
       "pid": 2030,
       "name": "合肥天鹅湖",
-      "type": "3dtiles",
-      "url": "{dataServer}/3dtiles/qx-teh/tileset.json",
+      "type": "tileset",
+      "url": "{mars3d_data}/3dtiles/qx-teh/tileset.json",
       "position": { "lng": 117.218434, "lat": 31.81807, "alt": 163 },
       "maximumScreenSpaceError": 16,
       "maximumMemoryUsage": 1024,
@@ -993,9 +992,9 @@
     },
     {
       "pid": 2030,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "大雁塔",
-      "url": "{dataServer}/3dtiles/qx-dyt/tileset.json",
+      "url": "{mars3d_data}/3dtiles/qx-dyt/tileset.json",
       "position": { "alt": -27 },
       "maximumScreenSpaceError": 1,
       "maximumMemoryUsage": 1024,
@@ -1008,7 +1007,7 @@
       "pid": 2030,
       "type": "geojson",
       "name": "文庙-单体化",
-      "url": " {dataServer}/file/geojson/dth-wm.json",
+      "url": " {mars3d_data}/file/geojson/dth-wm.json",
       "symbol": {
         "type": "polygonP",
         "styleOptions": {
@@ -1032,9 +1031,9 @@
     {
       "id": 203012,
       "pid": 2030,
-      "type": "3dtiles",
+      "type": "tileset",
       "name": "文庙",
-      "url": "{dataServer}/3dtiles/qx-simiao/tileset.json",
+      "url": "{mars3d_data}/3dtiles/qx-simiao/tileset.json",
       "position": { "alt": 80.6 },
       "maximumScreenSpaceError": 2,
       "maximumMemoryUsage": 2048,
