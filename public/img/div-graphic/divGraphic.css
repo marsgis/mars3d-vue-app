@@ -207,6 +207,7 @@
   bottom: 29px;
   cursor: default;
   padding: 5px;
+  color: #fff;
   border: 1px solid #9c9944e8;
 }
 
@@ -686,7 +687,7 @@
 }
 
 
-/**************** 视频上下抖动点+下竖线 ****************/ 
+/**************** 视频上下抖动点+下竖线 ****************/
 .mars3d-divCameraPoint-content {
   /* 防止下面的line一直随img动画 */
   height: 30px;

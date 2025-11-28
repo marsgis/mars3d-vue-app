@@ -173,7 +173,7 @@ mars3d-vue-app
 
 ### 1. 如何切换 mars3d 到授权版
 
- 参考 [获取Mars3D](http://mars3d.cn/dev/guide/start/download.html)中“从 Mars3D官网 下载获取”章节介绍。
+ 参考 [SDK授权版说明](http://mars3d.cn/docs/advanced/authorization/)中说明集成
 
 流程大概是：
 - 配置后，无需改动源码，在项目代码中使用时与使用npm包是一样的方式，如 `import * as mars3d from "mars3d";`
@@ -194,7 +194,7 @@ mars3d-vue-app
 
 - 修改 config.json 中`terrain`配置中，将已有的`"show": true`配置，改为`"show": false`
 - 修改 config.json 中`basemaps`数组配置中，将已有的`"show": true`的图层，将该值改为`"show": false` ，并将单张图片或离线地图加上`"show": true`，并修改相关 URL 地址。
-- 您也可以参考教程[发布三维数据服务](http://mars3d.cn/dev/guide/data/server.html)进行部署离线地图服务，里面也有一些示例离线数据。
+- 您也可以参考教程[发布三维数据服务](http://mars3d.cn/docs/data/server/)进行部署离线地图服务，里面也有一些示例离线数据。
 
 ## Mars3D 是什么
 
