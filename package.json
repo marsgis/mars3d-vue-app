@@ -1,6 +1,6 @@
 {
   "name": "mars3d-vue-app",
-  "version": "3.10.0",
+  "version": "3.11.0",
   "description": "在Vue3技术栈下的Mars3D平台 手机APP项目",
   "scripts": {
     "dev": "vite --host",
@@ -30,8 +30,8 @@
     "font-awesome": "^4.7.0",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
-    "mars3d": "~3.10.0",
-    "mars3d-cesium": "~1.137.0",
+    "mars3d": "~3.11.0",
+    "mars3d-cesium": "~1.138.0",
     "nprogress": "^0.2.0",
     "qs": "^6.14.0",
     "uuid": "^9.0.1",
