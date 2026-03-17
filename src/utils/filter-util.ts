@@ -1,7 +1,7 @@
 /**
  * 全局过滤器
  *
- * @copyright 火星科技 mars3d.cn
+ * @copyright mars3d.cn
  * @author 胡椒 2022-04-11
  */
 import dayjs from "dayjs"
