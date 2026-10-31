@@ -51,7 +51,7 @@
         { "name": "底图", "type": "tdt", "layer": "img_d" },
         { "name": "注记", "type": "tdt", "layer": "img_z" }
       ],
-      "show": true
+      "show": false
     },
     {
       "pid": 10,
@@ -66,12 +66,14 @@
     {
       "pid": 10,
       "name": "高德影像",
+      "id": 2021,
       "type": "group",
       "icon": "./img/thumbnail/basemap/gaode_img.png",
       "layers": [
         { "name": "底图", "type": "gaode", "layer": "img_d" },
         { "name": "注记", "type": "gaode", "layer": "img_z" }
-      ]
+      ],
+      "show": true
     },
     {
       "pid": 10,
