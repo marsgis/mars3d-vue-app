@@ -481,11 +481,11 @@
   .help-content-container {
     padding: 0 15px;
     border-radius: 10px;
-    border: 2px solid rgb(69, 162, 255);
+    border: 2px solid var(--mars-primary);
     margin-top: 5px;
   }
   .help-content_title {
-    color: rgb(69, 162, 255);
+    color: var(--mars-primary);
     margin: 15px 0px;
   }
   .help-content_text {
@@ -496,9 +496,9 @@
 // 右侧统一按钮样式 -- 暂时都是蓝色
 .tools-right-btns {
   padding: 10px 8px !important;
-  background: linear-gradient(-48deg, #3e7bf7 0%, #578eff 100%);
-  box-shadow: 0px 2px 10px 0px rgba(25, 33, 47, 0.3);
-  color: #fff;
+  background: var(--mars-primary-gradient);
+  box-shadow: var(--mars-shadow);
+  color: var(--mars-text-color-white);
   .desc {
     font-size: 12px;
     text-align: center;
@@ -542,5 +542,12 @@
     &:nth-last-of-type(1) {
       margin-right: 10px;
     }
+  }
+}
+
+
+.mars-main-view {
+  .van-row {
+    align-items: center;
   }
 }

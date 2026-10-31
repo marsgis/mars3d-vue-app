@@ -13,7 +13,7 @@
  * @author 火星渣渣灰 2022-02-19
  */
 import { onMounted, ref, computed } from "vue"
-import { getConfig } from "../index"
+import { getConfig } from "../config"
 
 const CONFIG = getConfig()
 let globalConfig: Record<string, any> = {}
@@ -80,19 +80,19 @@ const animationClass = computed(() => {
     return props.animation
   }
   const right = getCssNumber(mergeProps.value.right)
-  if (right && right >= 0 && right < 100) {
+  if (right !== null && right >= 0 && right < 100) {
     return "fadein-right"
   }
   const left = getCssNumber(mergeProps.value.left)
-  if (left || (left >= 0 && left < 100)) {
+  if (left !== null && left >= 0 && left < 100) {
     return "fadein-left"
   }
   const top = getCssNumber(mergeProps.value.top)
-  if (left || (top >= 0 && top < 100)) {
+  if (top !== null && top >= 0 && top < 100) {
     return "fadein-down"
   }
   const bottom = getCssNumber(mergeProps.value.bottom)
-  if (bottom || (bottom >= 0 && bottom < 100)) {
+  if (bottom !== null && bottom >= 0 && bottom < 100) {
     return "fadein-up"
   }
   return "fadein-center"

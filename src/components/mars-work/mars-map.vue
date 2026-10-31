@@ -10,6 +10,7 @@
 import { computed, onUnmounted, onMounted, toRaw } from "vue"
 import { $message } from "@mars/components/mars-ui/index"
 import { getQueryString } from "@mars/utils/mars-util"
+import "./expand/index" // 引入插件或注册扩展js
 import * as mars3d from "mars3d"
 
 const $alert = alert
@@ -30,6 +31,8 @@ const props = withDefaults(
 
 // 用于存放地球组件实例
 let map: mars3d.Map // 地图对象
+// 组件是否已卸载，防止异步初始化在卸载后仍创建地图导致泄漏
+let isUnmounted = false
 
 // 使用用户传入的 mapKey 拼接生成 withKeyId 作为当前显示容器的id
 const withKeyId = computed(() => `mars3d-container-${props.mapKey}`)
@@ -43,6 +46,11 @@ const initMars3d = async () => {
   if (props.url) {
     // 存在url时才读取
     mapOptions = await mars3d.Util.fetchJson({ url: props.url })
+  }
+
+  // 异步等待期间组件可能已卸载，此时不再创建地图实例
+  if (isUnmounted) {
+    return
   }
 
   if (props.options) {
@@ -122,10 +130,18 @@ onMounted(() => {
 
 // 组件卸载之前销毁mars3d实例
 onUnmounted(() => {
+  isUnmounted = true
   if (map) {
     map.destroy()
     map = null
   }
+  // 清理挂载到 window 的全局函数，防止多地图实例互相覆盖或残留
+  // @ts-ignore
+  window.globalAlert = null
+  // @ts-ignore
+  window.globalMsg = null
+  // @ts-ignore
+  window.showPopupDetails = null
   // logInfo("map销毁完成", map)
 })
 </script>

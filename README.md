@@ -83,7 +83,7 @@ git clone git@gitee.com:marsgis/mars3d-vue-app.git
 ```
 
 ### 运行命令
-请将机器Node版本升级到v18及以上版本(建议下载安装官网最新稳定版本)
+请将机器Node版本升级到v20.19.0及以上版本、npm 10及以上版本(建议下载安装官网最新稳定版本)，与 package.json 中 engines 约束保持一致
 
 #### 首次运行前安装依赖
 
@@ -164,10 +164,22 @@ mars3d-vue-app
 │
 │─── package.json        项目配置信息
 │─── vite.config.ts      vite 配置文件
-│─── tsconfig.js         ts 配置文件
-│─── .eslintrc.js        eslint配置文件
+│─── tsconfig.json       ts 配置文件
+│─── .eslintrc.json      eslint配置文件
 └─── index.html          页面入口
 ```
+
+### UI 设计规范
+
+全站 UI 通过 CSS 设计变量统一管理，定义在 `src/common/style/index.less` 的 `:root` 中（`--mars-*` 前缀），并同时覆盖了 Vant4 的主题变量（`--van-primary-color` 等）。
+
+- **主色**：`--mars-primary`（#1989fa，与 Vant 主色一致），按钮等使用 `--mars-primary-gradient` 渐变
+- **语义色**：`--mars-danger-gradient`、`--mars-success-gradient`、`--mars-warning`
+- **文字层级**：`--mars-text-color`（主文字）、`--mars-text-color-secondary`（次级）、`--mars-text-color-muted`（弱化）
+- **背景/边框**：`--mars-bg-page`、`--mars-bg-light`、`--mars-border-color`
+- **圆角/间距/阴影**：`--mars-radius-sm|md|lg`、`--mars-spacing-xs|sm|md|lg`、`--mars-shadow`
+
+页面样式请优先引用上述变量，不要写死色值，保证全站视觉一致。
 
 ## 开发中常见问题
 
@@ -208,45 +220,7 @@ mars3d-vue-app
 
 - Mars3D 开源项目列表：[https://github.com/marsgis/mars3d](https://github.com/marsgis/mars3d)
 
-## 📄 开源协议 / License
+## 版权说明
 
-### 1. 本项目的授权
-
-**mars3d-vue-app** 的项目源代码（包括但不限于 `src/` 目录下的页面、
-组件、路由、状态管理、配置及项目模板代码）基于 **Apache License 2.0**
-**完全开源**。在遵守协议的前提下，您可以自由地使用、复制、修改、合并、
-发布、分发和再授权，**包括用于商业目的**。
-
-### 2. 请注意：项目与 SDK 是两层相互独立的授权
-
-本项目是 Mars3D SDK 的**示例工程 / 项目模板**，运行时依赖 **Mars3D SDK
-核心类库**（`mars3d` 命名空间下的类库文件，通过 `npm install mars3d` 安装，或通过 CDN 引入）。Mars3D SDK 是
-独立授权的产品，其授权条款与本项目**相互独立**：
-
-| 对比项 | 本项目（mars3d-vue-app） | Mars3D SDK |
-| --- | --- | --- |
-| 授权方式 | **Apache License 2.0** | 免费版：Apache-2.0 ＋ 附加条款；商业版：商业授权 |
-| 是否开源 | 完全开源 | 以编译后的类库形式分发 |
-| 页面 Logo |  | 免费版**必须保留**，不得移除 / 遮挡 / 规避；商业授权版可去除 |
-| F12 控制台版权信息 |  | 免费版不得修改；商业授权版替换为被授权方单位名称 |
-| 商业用途 | 自由使用 | 免费版可商用（须保留署名）；去除 Logo 需购买商业授权 |
-| 协议依据 | 本仓库根目录 `LICENSE` | SDK 随附授权文件，或见 <https://mars3d.cn> |
-
-**特别说明：**
-
-- 本项目源代码的 Apache-2.0 授权**仅覆盖项目自身代码，不覆盖、不改变
-  Mars3D SDK 的授权条款**，也不构成对 SDK 附加条款（Logo、F12 控制台
-  信息保留义务）的豁免。
-- 您基于本项目进行二次开发、打包、部署或对外交付时，只要运行时使用了
-  Mars3D SDK，即应同时遵守 SDK 的授权条款。
-- 通过 npm 安装的 SDK 类库文件（`node_modules/mars3d/` 目录）**不属于
-  本项目的开源代码**，其著作权归mars3d团队所有，适用 SDK
-  自身的授权协议。
-
-### 3. 购买 SDK 商业授权
-
-如您需要：去除页面周边的 Mars3D Logo；将 F12 控制台版权信息替换为
-贵单位 / 项目名称；或在对外商业交付、政企招投标中取得盖章授权文件，
-请购买 Mars3D SDK 商业授权👉 <http://mars3d.cn/buy.html>
-
-购买后只需用授权版 SDK 覆盖项目中的类库文件，**项目代码无需任何修改**。
+1. Mars3D 平台由[mars3d团队](http://mars3d.cn/)自主研发，拥有所有权利。
+2. 任何个人或组织可以在遵守相关要求下可以免费无限制使用。

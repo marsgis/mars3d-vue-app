@@ -20,3 +20,10 @@ declare module "nprogress" {
 declare module "uuid" {
   export const v4: any
 }
+
+interface ImportMetaEnv {
+  readonly VITE_OSS_ACCESS_KEY_ID?: string
+  readonly VITE_OSS_ACCESS_KEY_SECRET?: string
+  readonly VITE_OSS_REGION?: string
+  readonly VITE_OSS_BUCKET?: string
+}

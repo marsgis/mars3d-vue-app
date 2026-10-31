@@ -5,6 +5,63 @@
  * @author 火星渣渣灰 2022-01-01
  */
 
+/**
+ * 全站设计变量（Design Tokens）
+ * 页面样式请优先引用这里的变量，避免再写死色值/圆角/间距
+ * 同时覆盖 Vant4 的同名变量，保证 Vant 组件与自定义样式同色
+ */
+:root {
+  /* 主色（Vant 主蓝） */
+  --mars-primary: #1989fa;
+  --mars-primary-gradient: linear-gradient(-10deg, #1989fa 0%, #4a86ff 100%);
+
+  /* 语义色 */
+  --mars-danger: #f75165;
+  --mars-danger-gradient: linear-gradient(-10deg, #f75165 0%, #fa6b7c 100%);
+  --mars-success: #11aa8d;
+  --mars-success-gradient: linear-gradient(-10deg, #11aa8d 0%, #3cccb0 100%);
+  --mars-warning: #ffd21e;
+
+  /* POI 工具入口语义色（搜索结果页 收藏/附近/导航/路线） */
+  --mars-poi-star: #ffd21e;
+  --mars-poi-local: #0090ff;
+  --mars-poi-send: #1cdeac;
+  --mars-poi-clue: #06a5fe;
+
+  /* 深色底面板上的图标色（如漫游播放条） */
+  --mars-icon-dark-bg: #8798b2;
+
+  /* 文字层级 */
+  --mars-text-color: #19212f; // 主文字
+  --mars-text-color-secondary: #555555; // 次级文字
+  --mars-text-color-muted: #9aa5ae; // 弱化/占位文字
+  --mars-text-color-white: #ffffff; // 深色底上的反白文字
+
+  /* 背景/边框 */
+  --mars-bg-page: #f7f8fa; // 页面浅灰背景
+  --mars-bg-light: #f4f4f4; // 控件浅灰背景
+  --mars-border-color: #f5f6f7; // 分割线/边框
+  --mars-white: #ffffff;
+
+  /* 圆角层级 */
+  --mars-radius-sm: 4px;
+  --mars-radius-md: 8px;
+  --mars-radius-lg: 12px;
+
+  /* 间距层级 */
+  --mars-spacing-xs: 5px;
+  --mars-spacing-sm: 10px;
+  --mars-spacing-md: 15px;
+  --mars-spacing-lg: 20px;
+
+  /* 阴影 */
+  --mars-shadow: 0px 2px 10px 0px rgba(25, 33, 47, 0.3);
+
+  /* 覆盖 Vant4 主题变量，统一组件主色 */
+  --van-primary-color: #1989fa;
+  --van-blue: #1989fa;
+}
+
 * {
   -webkit-touch-callout: none;
   /*系统默认菜单被禁用*/

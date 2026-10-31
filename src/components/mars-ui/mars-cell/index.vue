@@ -30,13 +30,13 @@ export default defineComponent({
     font-size: 12px;
     font-family: PingFang SC;
     font-weight: 500;
-    color: #19212f;
+    color: var(--mars-text-color);
   }
   .van-cell__value {
     font-size: 12px;
     font-family: DIN;
     font-weight: 500;
-    color: #19212f;
+    color: var(--mars-text-color);
   }
 }
 </style>

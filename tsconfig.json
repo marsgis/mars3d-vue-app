@@ -18,6 +18,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "isolatedModules": false,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "outDir": "dist",
     "types": ["vite/client", "node"],

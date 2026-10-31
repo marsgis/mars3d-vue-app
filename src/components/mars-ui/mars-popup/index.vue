@@ -7,7 +7,7 @@
 </template>
 <script lang="ts">
 import { useAttrs, useSlots, defineComponent } from "vue"
-import { getConfig } from "../index"
+import { getConfig } from "../config"
 
 export default defineComponent({
   name: "mars-popup",
@@ -16,7 +16,6 @@ export default defineComponent({
     const attrs = useAttrs()
     const slots = useSlots()
     const CONFIG = getConfig()
-    // console.log(attrs)
     let globalConfig: Record<string, any> = {}
     if (CONFIG.popup) {
       const popProps: Record<string, any> = {}
@@ -36,7 +35,6 @@ export default defineComponent({
         ...popProps,
         ...globalConfig
       }
-      // console.log(globalConfig)
     }
     return {
       attrs,

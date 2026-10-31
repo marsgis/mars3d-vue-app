@@ -51,6 +51,11 @@ testem.log
 .DS_Store
 Thumbs.db
 package-lock.json
+# 本地密钥，勿提交
+.env
+.env.local
+.env.*.local
+!.env.example
 
 # 本地测试
 pack/*.*

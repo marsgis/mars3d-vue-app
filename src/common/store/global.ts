@@ -5,6 +5,7 @@
  */
 import { Store, createStore, useStore } from "vuex"
 import { InjectionKey } from "vue"
+import { getUserInformation } from "@mars/common/api"
 
 export interface Point {
   name: string
@@ -26,9 +27,9 @@ export interface Information {
 export interface GlobalState {
   locate: Point // 当前位置信息
   userToken: any // 用于存储TOKEN
-  userInformation: Information
-  loginRedirect: string
-  userPhone: string
+  userInformation: Information | null
+  loginRedirect: string | null
+  userPhone: string | null
 }
 
 export const key: InjectionKey<Store<GlobalState>> = Symbol("global")
@@ -50,7 +51,7 @@ export const globalStore = createStore<GlobalState>({
       state.locate = point
     },
     // 更新用户Token
-    updateUserToke(state, token: any) {
+    updateUserToken(state, token: any) {
       state.userToken = token
     },
     // 更新用户信息
@@ -67,8 +68,11 @@ export const globalStore = createStore<GlobalState>({
   },
   actions: {
     async getUserInfo({ commit }) {
-      const data = { id: "1", user_name: "mars3d", phone: "0551-65883001", email: "wh@marsgis.cn", avatar: "" }
-      commit("updateUserInformation", data)
+      const { code, data } = await getUserInformation()
+
+      if (code === 200) {
+        commit("updateUserInformation", data)
+      }
     }
   }
 })

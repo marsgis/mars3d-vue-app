@@ -7,7 +7,8 @@
   <mars-popup v-model:show="layersShow">
     <p class="layers-title">底图切换</p>
     <ul class="basemap">
-      <li v-for="(item, i) in baseMaps" :key="i" class="basemap-card" :class="{ 'active-card': active === item.id }" @click="changeBaseMaps(item)">
+      <li v-for="(item, i) in baseMaps" :key="i" class="basemap-card" :class="{ 'active-card': active === item.id }"
+        @click="changeBaseMaps(item)">
         <div><img class="icon" :src="`${item.options.icon || 'img/basemaps/bingAerial.png'}`" /></div>
         <div>{{ item.name }}</div>
       </li>
@@ -101,100 +102,80 @@ function changeTerrain() {
   mapWork.changeTerrain(chkHasTerrain.value)
 }
 
-const opacityObj: any = reactive({})
-const layersObj: any = {}
-
 const layerData = ref<any[]>([])
+const opacityObj = ref<{ id: number }>({} as any)
 function initLayers() {
-  const layers = mapWork.getLayers()
-  for (let i = layers.length - 1; i >= 0; i--) {
-    const layer = layers[i] // 创建图层
+  const showIds = [] // 是显示状态的图层id集合
+  const openIds = [] // 展开的树节点id集合（如果不想展开，对应图层配置open:false）
 
-    if (!layer._hasMapInit && layer.pid === -1 && layer.id !== 99) {
-      layer.pid = 99 // 示例中创建的图层都放到99分组下面
+  const result = mapWork.getLayrsTree({
+    basemaps: false, // 是否取config.json中的basempas
+    filter: function (layer) {
+      if (!layer.name) {
+        return false // 未命名图层不在管理器展示
+      }
+      return true
+    },
+    forEach: function (item, layer) {
+      item.key = item.id // 树控件api需要的唯一标识
+      item.title = item.name || `未命名(${layer.type})` // 树控件api需要的显示文本字段
+
+      item.hasZIndex = layer.hasZIndex // 当前vue绑定使用的属性
+      item.hasOpacity = layer.hasOpacity
+
+      // 记录在item中，会导致卡顿
+      opacityObj.value[item.id] = layer.opacity ?? 1
+      if (item.show) {
+        showIds.push(item.id)
+      }
+      if (item.group && item.open !== false) {
+        openIds.push(item.id)
+      }
     }
+  })
 
-    if (layer && layer.pid === -1) {
-      const node: any = reactive({
-        index: i,
-        title: layer.name || `未命名(${layer.type})`,
-        key: layer.id,
-        id: layer.id,
-        pId: layer.pid,
-        hasZIndex: layer.hasZIndex,
-        hasOpacity: layer.hasOpacity,
-        opacity: 100 * (layer.opacity || 0)
-      })
-      if (layer.hasOpacity) {
-        opacityObj[layer.id] = 100 * (layer.opacity || 0)
-      }
-      node.children = findChild(node, layers)
-      layerData.value.push(node)
-    }
-  }
-
-  console.log("图层数据", layerData.value)
-}
-function findChild(parent: any, list: any[]) {
-  return list
-    .filter((item: any) => item.pid === parent.id)
-    .reverse()
-    .map((item: any, i: number) => {
-      const node: any = {
-        index: i,
-        title: item.name || `未命名(${item.type})`,
-        key: item.id,
-        id: item.id,
-        pId: item.pid,
-        hasZIndex: item.hasZIndex,
-        hasOpacity: item.hasOpacity,
-        opacity: 100 * (item.opacity || 0),
-        parent,
-        show: item.isAdded && item.show
-      }
-
-      if (item.hasOpacity) {
-        opacityObj[item.id] = 100 * (item.opacity || 0)
-      }
-      layersObj[item.id] = item
-      node.children = findChild(node, list)
-
-      return node
-    })
+  // 赋予树控件
+  layerData.value = result.tree
 }
 
 function checkedChange(item: any) {
-  if (item?.children.length > 0) {
-    item.children.forEach((element) => {
-      const layer = layersObj[element.id]
-      addLayers(item, layer)
-    })
-  } else {
-    const layer = layersObj[item.id]
-    addLayers(item, layer)
-  }
+  const layer = mapWork.getLayerByAttr(item?.key, "id")
+
+  mapWork.updateLayerShow(layer, item.show)
+
+  setTimeout(() => {
+    // 单独处理下平台标绘的图片问题
+    if (layer.id === 303011) {
+      layer.eachGraphic((graphic) => {
+        const image = graphic.style.image
+        if (image && graphic.style.image.startsWith("/img/")) {
+          const img = image.replace("/img/", "img/")
+          graphic.setStyle({
+            image: img
+          })
+        }
+        const image2 = graphic.style.image2
+        if (image2 && graphic.style.image2.startsWith("/img/")) {
+          const img = image2.replace("/img/", "img/")
+          graphic.setStyle({
+            image2: img
+          })
+        }
+      })
+    }
+    // 单独处理下高德实时路况的代理情况，在手机apk状态下不需要代理
+    if (layer.name === "高德实时路况" && process.env.mode === "app") {
+      layer.setOptions({ proxy: "" })
+    }
+  }, 500)
 }
 
-function addLayers(item, layer) {
-  if (layer) {
-    if (!layer.isAdded) {
-      mapWork.addLayer(layer)
-    }
-    if (item.show) {
-      layer.show = true
-      layer.readyPromise.then(function (layer) {
-        layer.flyTo()
-      })
-    } else {
-      layer.show = false
-    }
-  }
-}
 </script>
 
 <style scoped lang="less">
 .layer-shortcut {
   padding: 8px;
+
   .thumbnail {
     width: 24px;
     height: 24px;
@@ -204,22 +185,25 @@ function addLayers(item, layer) {
     background-size: 100% 200%;
   }
 }
+
 .layers-title {
   width: 100%;
   height: 30px;
   line-height: 30px;
-  background: #f4f4f4;
+  background: var(--mars-bg-light);
   font-size: 14px;
-  color: #555;
+  color: var(--mars-text-color-secondary);
   box-sizing: border-box;
   padding-left: 10px;
 }
+
 .basemap {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
 }
+
 .basemap-card {
   width: 30%;
   list-style-type: none;
@@ -228,21 +212,24 @@ function addLayers(item, layer) {
   margin-left: 5px;
   cursor: pointer;
   font-size: 12px;
-  color: #555;
+  color: var(--mars-text-color-secondary);
+
   &:hover {
     .active-card();
   }
+
   .icon {
-    border: 2px solid #fff;
+    border: 2px solid var(--mars-white);
     width: 70px;
     height: 55px;
   }
 }
 
 .active-card {
-  color: #337fe5 !important;
+  color: var(--mars-primary) !important;
+
   .icon {
-    border-color: #337fe5;
+    border-color: var(--mars-primary);
   }
 }
 </style>

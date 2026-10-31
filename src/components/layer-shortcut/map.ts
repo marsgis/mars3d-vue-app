@@ -30,14 +30,25 @@ export function changeTerrain(value: boolean) {
 }
 
 // 获取图层数据
-export function getLayers() {
-  return map.getLayers({
-    basemaps: false, // 是否取config.json中的basempas
-    layers: true // 是否取config.json中的layers
-  })
+export function getLayrsTree(params) {
+  return map.getLayrsTree(params)
 }
 
-export function addLayer(layer: mars3d.layer.BaseLayer) {
-  map.addLayer(layer)
-  layer.flyTo()
+export function getLayerByAttr(attrValue: string | number, attrName?: string) {
+  return map.getLayerByAttr(attrValue, attrName)
+}
+
+
+// 更新图层勾选状态
+export function updateLayerShow(layer, show) {
+  if (show) {
+    if (!layer.isAdded) {
+      map.addLayer(layer)
+    }
+    layer.show = true
+
+    layer.flyTo() // 如果不想勾选定位，注释该行
+  } else {
+    layer.show = false
+  }
 }
