@@ -15,8 +15,8 @@ export default ({ mode }: ConfigEnv) => {
   // 获取 .env 文件里定义的环境变量
   const ENV = loadEnv(mode, root)
 
+  // 仅输出模式名；不得打印 ENV 整体（.env 含云存储凭据等敏感变量）
   console.log(`当前环境信息：`, mode)
-  console.log(`ENV：`, ENV)
 
   return defineConfig({
     base: ENV.VITE_BASE_URL,
@@ -36,7 +36,8 @@ export default ({ mode }: ConfigEnv) => {
     },
     resolve: {
       alias: {
-        "@mars": path.join(__dirname, "src")
+        // 注意：Vite8 (ESM) 下不能使用 __dirname，需使用 import.meta.dirname
+        "@mars": path.join(import.meta.dirname, "src")
       },
       extensions: [".js", ".ts", ".jsx", ".tsx", ".json", ".mjs"]
     },
@@ -73,12 +74,24 @@ export default ({ mode }: ConfigEnv) => {
       },
       // 静态资源目录
       assetsDir: "assets",
+      // 大文件告警阈值放宽（mars3d-cesium 单库即 4-5MB，已独立分包）
+      chunkSizeWarningLimit: 4000,
       // 自定义底层的 Rollup 打包配置
       rollupOptions: {
         output: {
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
-          assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
+          assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+          // Vite8 (rolldown) 使用原生 codeSplitting 分组（不支持 manualChunks）
+          // priority 高的组先匹配，cesium 必须排在 mars3d 之前，否则会被 mars3d(-[a-z]+)* 误吞
+          codeSplitting: {
+            groups: [
+              { name: "cesium", test: /[\\/]node_modules[\\/]mars3d-cesium[\\/]/, priority: 30 },
+              { name: "mars3d", test: /[\\/]node_modules[\\/]mars3d(-[a-z]+)*[\\/]|[\\/]packages[\\/]mars3d[\\/]/, priority: 20 },
+              { name: "vant", test: /[\\/]node_modules[\\/](vant|@vant)[\\/]/, priority: 10 },
+              { name: "vendor", test: /[\\/]node_modules[\\/]/, priority: 0 }
+            ]
+          }
         }
       },
       // 当设置为 true, 构建后将会生成 manifest.json 文件
@@ -100,7 +113,8 @@ export default ({ mode }: ConfigEnv) => {
     plugins: [
       vue(),
       eslintPlugin(),
-      mars3dPlugin(),
+      // Vite 8(rolldown) 预构建 mars3d-cesium 会挂起导致 dev 卡死，必须走静态资源外链模式
+      mars3dPlugin({ useStatic: true }),
       Components({ resolvers: [VantResolver()] })
     ]
   })

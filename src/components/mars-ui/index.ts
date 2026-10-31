@@ -41,6 +41,7 @@ import MarsPopup from "./mars-popup/index.vue"
 
 import MarsMessage, { $message as marsMessage } from "./mars-message"
 import MarsDialog, { $dialog as marsDialog } from "./mars-dialog"
+import { setConfig } from "./config"
 // import MarsNotify, { $shownotify as marsShowNotify, $clearNotify as marsClearNotify } from "./mars-notify"
 // import MarsLoading, { $hideLoading as marsHideLoading, $showLoading as marsShowLoading } from "./mars-loading"
 import {
@@ -134,14 +135,8 @@ const components = [
   // MarsSidebarItem
 ]
 
-let marsUIConfig: Record<string, any>
-
-export const getConfig = () => {
-  return marsUIConfig
-}
-
 export default function (app: App, config: Record<string, any> = {}): App {
-  marsUIConfig = config
+  setConfig(config)
 
   app.use(Image)
   app.use(Button)
