@@ -113,8 +113,7 @@ export default ({ mode }: ConfigEnv) => {
     plugins: [
       vue(),
       eslintPlugin(),
-      // Vite 8(rolldown) 预构建 mars3d-cesium 会挂起导致 dev 卡死，必须走静态资源外链模式
-      mars3dPlugin({ useStatic: true }),
+      mars3dPlugin(),
       Components({ resolvers: [VantResolver()] })
     ]
   })
